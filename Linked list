@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int data;
+	struct node* next;
+};
+struct node* head;
+void add(int x)
+{
+	struct node* temp1=(struct node*)malloc(sizeof(struct node));
+	temp1->next=head;
+	temp1->data=x;
+	head=temp1;
+};
+void print()
+{
+	struct node* temp1=head;
+	printf("Linked list is :-\n");
+	while(temp1->next!=NULL)
+	{
+		printf("%d ",temp1->data);
+		temp1=temp1->next;
+	}
+	printf("%d",temp1->data);
+	printf("\n");
+}
+	
+int main()
+{
+	int x;
+	head=NULL;
+	struct node* temp;
+	temp=(struct node*)malloc(sizeof(struct node));
+	head=temp;
+	head->data=11;
+	head->next=NULL;
+	printf("First node is :- \n");
+	printf("Data-> %d\n",head->data);
+	printf("Enter number of nodes to add\n");
+	int n;
+	scanf("%d",&n);
+	while(n--)
+	{
+		scanf("%d",&x);
+		add(x);
+		print();
+	}
+}
