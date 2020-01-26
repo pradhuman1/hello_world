@@ -1,0 +1,34 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+void lis(vector<int> &dp,vector<int> &arr, int n,int *ans)
+{
+	for(int i=1;i<n;++i)
+	{
+		for(int j=0;j<i;++j)
+		{
+			if(arr[i]>arr[j])
+			dp[i]=max(dp[i],1+dp[j]);
+		}
+		if(dp[i]>(*ans))
+		(*ans)=dp[i];
+	}
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		vector<int>arr(n);
+		for(int i=0;i<n;++i)
+		cin>>arr[i];
+		vector<int>dp(n,1);
+		int ans=1;
+		lis(dp,arr,n,&ans);
+		cout<<ans<<"\n";
+	}
+	
+}
